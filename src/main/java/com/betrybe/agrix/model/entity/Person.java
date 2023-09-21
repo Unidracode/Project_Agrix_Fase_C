@@ -2,7 +2,6 @@ package com.betrybe.agrix.models.entities;
 
 
 import com.betrybe.agrix.ebytr.staff.security.Role;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -92,7 +91,6 @@ public class Person implements UserDetails, GrantedAuthority {
         && Objects.equals(role, person.role);
   }
 
-  @JsonIgnore
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
     return List.of(new SimpleGrantedAuthority(role.getName()));
@@ -118,7 +116,6 @@ public class Person implements UserDetails, GrantedAuthority {
     return true;
   }
 
-  @JsonIgnore
   @Override
   public String getAuthority() {
     return this.getRole().getName();
