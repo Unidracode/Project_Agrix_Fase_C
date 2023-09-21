@@ -8,7 +8,6 @@ import com.betrybe.agrix.models.entities.Person;
  */
 
 public record NewPersonDto(Long id, String username, String password, Role role) {
-
   public Person toEntity() {
     return new Person(id, username, password, role);
   }

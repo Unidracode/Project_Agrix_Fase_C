@@ -35,7 +35,6 @@ public class PersonController {
   public ResponseEntity<PersonDto> createPerson(@RequestBody NewPersonDto newPersonDto) {
     Person person = personService.create(newPersonDto.toEntity());
     PersonDto personDto = new PersonDto(person.getId(), person.getUsername(), person.getRole());
-
     return ResponseEntity.status(HttpStatus.CREATED).body(personDto);
   }
 }
