@@ -1,6 +1,6 @@
 package com.betrybe.agrix.service;
 
-import com.betrybe.agrix.ebytr.staff.exception.PersonNotFoundException;
+import com.betrybe.agrix.exception.PersonNotFoundException;
 import com.betrybe.agrix.models.entities.Person;
 import com.betrybe.agrix.models.repositories.PersonRepository;
 import java.util.Optional;

@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -39,6 +40,7 @@ public class CropController {
    */
 
   @GetMapping
+  @Secured({"MANAGER", "ADMIN"})
   public ResponseEntity<List<CropDto>> getAllCrops() {
     List<Crop> allCrops = cropService.getCrops();
     List<CropDto> response = allCrops.stream().map(CropDto::fromEntity).toList();
@@ -50,6 +52,7 @@ public class CropController {
    */
 
   @GetMapping("/{cropId}")
+  @Secured({"MANAGER", "ADMIN"})
   public ResponseEntity<CropDto> getCropById(@PathVariable Long cropId) {
     Optional<Crop> crop = cropService.getCropById(cropId);
     if (crop.isPresent()) {
@@ -62,6 +65,7 @@ public class CropController {
    * comment.
    */
   @GetMapping("/search")
+  @Secured({"MANAGER", "ADMIN"})
   public ResponseEntity<List<CropDto>> searchCrops(
       @RequestParam(name = "start") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate start,
       @RequestParam(name = "end") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate end) {
